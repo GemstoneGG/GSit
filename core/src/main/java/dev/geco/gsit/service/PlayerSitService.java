@@ -41,6 +41,10 @@ public class PlayerSitService {
 
     public boolean isPlayerInPlayerSitStack(Player player) { return bottomToTopStacks.containsKey(player.getUniqueId()) || topToBottomStacks.containsKey(player.getUniqueId()); }
 
+    public boolean isPlayerBottomOfPlayerSitStack(Player player) { return bottomToTopStacks.containsKey(player.getUniqueId()); }
+
+    public boolean isPlayerTopOfPlayerSitStack(Player player) { return topToBottomStacks.containsKey(player.getUniqueId()); }
+
     public void removeAllPlayerSitStacks() {
         for(UUID topPlayerUuid : new ArrayList<>(topToBottomStacks.keySet())) {
             Player topPlayer = Bukkit.getPlayer(topPlayerUuid);

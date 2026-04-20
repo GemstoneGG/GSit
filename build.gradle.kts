@@ -19,6 +19,7 @@ allprojects {
         maven("https://maven.enginehub.org/repo/")
         maven("https://repo.extendedclip.com/content/repositories/placeholderapi/")
         maven("https://jitpack.io/")
+        maven("https://maven.canvasmc.io/snapshots")
     }
 
     tasks.compileJava {
