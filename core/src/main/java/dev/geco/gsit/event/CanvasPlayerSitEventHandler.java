@@ -5,10 +5,15 @@ import dev.geco.gsit.model.StopReason;
 import dev.geco.gsit.service.PlayerSitService;
 import io.canvasmc.canvas.event.EntityPostPortalAsyncEvent;
 import io.canvasmc.canvas.event.EntityPostTeleportAsyncEvent;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerTeleportEvent;
+
+import java.util.UUID;
 
 public class CanvasPlayerSitEventHandler implements Listener {
 
@@ -39,10 +44,34 @@ public class CanvasPlayerSitEventHandler implements Listener {
         }
 
         if(service.isPlayerBottomOfPlayerSitStack(player)) {
-            if(player.getPassengers().isEmpty()) {
-                service.stopPlayerSit(player, StopReason.TELEPORT, true, false, false);
-            }
+            if(!player.getPassengers().isEmpty()) return;
+            reSeatRiderAfterTeleport(player, service);
         }
+    }
+
+    private void reSeatRiderAfterTeleport(Player chair, PlayerSitService service) {
+        UUID riderUuid = service.getTopPlayerUuid(chair);
+
+        service.stopPlayerSit(chair, StopReason.TELEPORT, true, false, false);
+
+        if(riderUuid == null) return;
+        Player rider = Bukkit.getPlayer(riderUuid);
+        if(rider == null || !rider.isOnline() || !rider.isValid()) return;
+
+        Location destination = chair.getLocation();
+
+        rider.getScheduler().run(gSitMain, dismountTask -> {
+            if(!rider.isValid() || !rider.isOnline()) return;
+            if(rider.getVehicle() != null) rider.leaveVehicle();
+
+            rider.teleportAsync(destination, PlayerTeleportEvent.TeleportCause.PLUGIN).thenAccept(success -> {
+                if(Boolean.FALSE.equals(success)) return;
+                chair.getScheduler().run(gSitMain, sitTask -> {
+                    if(!chair.isValid() || !rider.isValid() || !rider.isOnline()) return;
+                    service.sitOnPlayer(rider, chair);
+                }, null);
+            });
+        }, null);
     }
 
 }

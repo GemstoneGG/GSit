@@ -45,6 +45,11 @@ public class PlayerSitService {
 
     public boolean isPlayerTopOfPlayerSitStack(Player player) { return topToBottomStacks.containsKey(player.getUniqueId()); }
 
+    public UUID getTopPlayerUuid(Player bottom) {
+        AbstractMap.SimpleImmutableEntry<UUID, Set<UUID>> entry = bottomToTopStacks.get(bottom.getUniqueId());
+        return entry == null ? null : entry.getKey();
+    }
+
     public void removeAllPlayerSitStacks() {
         for(UUID topPlayerUuid : new ArrayList<>(topToBottomStacks.keySet())) {
             Player topPlayer = Bukkit.getPlayer(topPlayerUuid);

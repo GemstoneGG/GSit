@@ -11,7 +11,7 @@ public enum StopReason {
     KICKED(true, false),
     PLUGIN(false, true),
     REGION(true, false),
-    TELEPORT(false, false),
+    TELEPORT(false, true),
     DISCONNECT(false, false);
 
     private final boolean cancellable;
