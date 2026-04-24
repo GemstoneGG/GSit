@@ -1,0 +1,48 @@
+Plugin:
+  plugin-enabled: '[P]#00C853เปิดใช้งานปลั๊กอินเรียบร้อยแล้ว'
+  plugin-link: '[P]#00C853เชื่อมกับ #A000FF%Link% #00C853สำเร็จ!'
+  plugin-update: '[P]#00C853มีเวอร์ชันใหม่: #A000FF%NewVersion%#00C853! เวอร์ชันปัจจุบัน: #FFFFFF%Version%#888888 ดาวน์โหลด: #A000FF%Path%'
+  plugin-data: '[P]#FF003Cเชื่อมต่อที่เก็บข้อมูลไม่ได้ กรุณาตรวจสอบคอนโซลเซิร์ฟเวอร์!'
+  plugin-version: '[P]#FF003Cปลั๊กอินใช้กับเวอร์ชันเซิร์ฟเวอร์นี้ไม่ได้! (#FFFFFF%Version%#FF003C)'
+  plugin-reload: '[P]#00C853รีโหลดปลั๊กอินเรียบร้อยแล้ว'
+  plugin-disabled: '[P]#00C853ปิดใช้งานปลั๊กอินเรียบร้อยแล้ว'
+  plugin-prefix: '#888888[#A000FFGSit#888888]'
+
+Messages:
+  command-permission-error: '[P]#FF003Cคุณไม่มีสิทธิ์ใช้คำสั่งนี้!'
+  command-sender-error: '[P]#FF003Cคุณใช้คำสั่งนี้ไม่ได้!'
+  command-version-error: '[P]#FF003Cเวอร์ชันเซิร์ฟเวอร์เก่าเกินไป! (#FFFFFF%Version%#FF003C) อัปเกรดเซิร์ฟเวอร์เพื่อใช้ฟีเจอร์นี้!'
+  
+  command-gsit-toggle-on: '[P]#00C853คุณได้เปิดการกดคลิกเพื่อ #A000FFนั่ง #00C853แล้ว'
+  command-gsit-toggle-off: '[P]#FF7A00คุณได้ปิดการกดคลิกเพื่อ #A000FFนั่ง #FF7A00แล้ว'
+  command-gsit-playertoggle-on: '[P]#00C853คุณได้เปิดการกดคลิกเพื่อ #A000FFนั่งบนผู้เล่น #00C853แล้ว'
+  command-gsit-playertoggle-off: '[P]#FF7A00คุณได้ปิดการกดคลิกเพื่อ #A000FFนั่งบนผู้เล่น #FF7A00แล้ว'
+  command-gcrawl-toggle-on: '[P]#00C853คุณได้เปิดการ #A000FFคลาน #00C853(กดซุ่มสองครั้ง) แล้ว'
+  command-gcrawl-toggle-off: '[P]#FF7A00คุณได้ปิดการ #A000FFคลาน #FF7A00(กดซุ่มสองครั้ง) แล้ว'
+  
+  action-sit-now-error: '[P]#FF003Cคุณนั่งตรงนี้ไม่ได้ตอนนี้!'
+  action-sit-world-error: '[P]#FF003Cคุณนั่งในโลกนี้ไม่ได้!'
+  action-sit-location-error: '[P]#FF003Cคุณนั่งตรงนี้ไม่ได้!'
+  action-sit-safe-error: '[P]#FF003Cนั่งตรงนี้ไม่ปลอดภัย!'
+  action-sit-region-error: '[P]#FF003Cคุณนั่งใน region นี้ไม่ได้!'
+  action-sit-kick-error: '[P]#FF003Cมีคนนั่งอยู่ตรงนี้แล้ว!'
+  action-sit-error: '[P]#FF003Cเกิดข้อผิดพลาด คุณนั่งตรงนี้ไม่ได้!'
+  action-sit-info: '#00C853กดนั่งพื่อลุกขึ้น'
+  
+  action-playersit-info: '#00C853กดนั่งพื่อลุกขึ้น'
+  
+  action-pose-now-error: '[P]#FF003Cคุณโพสตรงนี้ไม่ได้ตอนนี้!'
+  action-pose-world-error: '[P]#FF003Cคุณโพสในโลกนี้ไม่ได้!'
+  action-pose-location-error: '[P]#FF003Cคุณโพสตรงนี้ไม่ได้!'
+  action-pose-safe-error: '[P]#FF003Cโพสตรงนี้ไม่ปลอดภัย!'
+  action-pose-region-error: '[P]#FF003Cคุณโพสใน region นี้ไม่ได้!'
+  action-pose-kick-error: '[P]#FF003Cมีคนโพสอยู่ตรงนี้แล้ว!'
+  action-pose-error: '[P]#FF003Cเกิดข้อผิดพลาด คุณโพสตรงนี้ไม่ได้!'
+  action-pose-info: '#00C853กดนั่งพื่อลุกขึ้น'
+  
+  action-crawl-now-error: '[P]#FF003Cคุณคลานไม่ได้ตอนนี้!'
+  action-crawl-world-error: '[P]#FF003Cคุณคลานในโลกนี้ไม่ได้!'
+  action-crawl-region-error: '[P]#FF003Cคุณคลานใน region นี้ไม่ได้!'
+  action-crawl-info: '#00C853กดนั่งพื่อลุกขึ้น'
+  
+  action-blocked-error: '[P]#FF003Cคุณใช้คำสั่งนี้ไม่ได้ในตอนนี้!'
