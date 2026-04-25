@@ -5,8 +5,10 @@ import dev.geco.gsit.model.StopReason;
 import dev.geco.gsit.service.PlayerSitService;
 import io.canvasmc.canvas.event.EntityPostPortalAsyncEvent;
 import io.canvasmc.canvas.event.EntityPostTeleportAsyncEvent;
+import io.canvasmc.canvas.event.EntityTeleportAsyncEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -21,6 +23,15 @@ public class CanvasPlayerSitEventHandler implements Listener {
 
     public CanvasPlayerSitEventHandler(GSitMain gSitMain) {
         this.gSitMain = gSitMain;
+    }
+
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
+    public void onChairPreTeleport(EntityTeleportAsyncEvent event) {
+        if(!(event.getEntity() instanceof Player chair)) return;
+        PlayerSitService service = gSitMain.getPlayerSitService();
+        if(!service.isPlayerBottomOfPlayerSitStack(chair)) return;
+        if(!isPlayerSitStackStale(chair, service)) return;
+        service.stopPlayerSit(chair, StopReason.TELEPORT, true, false, false);
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
@@ -72,6 +83,19 @@ public class CanvasPlayerSitEventHandler implements Listener {
                 }, null);
             });
         }, null);
+    }
+
+    private static boolean isPlayerSitStackStale(Player chair, PlayerSitService service) {
+        UUID riderUuid = service.getTopPlayerUuid(chair);
+        if(riderUuid == null) return true;
+
+        Player rider = Bukkit.getPlayer(riderUuid);
+        if(rider == null || !rider.isOnline() || !rider.isValid()) return true;
+
+        Entity riderVehicle = rider.getVehicle();
+        if(riderVehicle == null) return true;
+
+        return !riderVehicle.getScoreboardTags().contains(PlayerSitService.PLAYERSIT_ENTITY_TAG);
     }
 
 }
